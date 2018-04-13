@@ -4,6 +4,10 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -39,7 +43,6 @@ public class GameClass extends Canvas implements Runnable {
 	private HUD hud;
 	private Menu menu;
 	
-	private Counter counter;
 	public int options;
 	private int handlerOption = 1;
 	public GameObject tempObject;
@@ -49,16 +52,16 @@ public class GameClass extends Canvas implements Runnable {
 	}
 
 	public enum STATE {
-		Menu, GameClass, Counter, Help, Settings, Leaderboard, Paused, Difficulty1, Difficulty2
+		Menu, GameClass, Help, Settings, Leaderboard, Paused, Difficulty1, Difficulty2
 	};
 
 	public STATE gameState = STATE.Menu;
+
 
 	public GameClass() throws InterruptedException {
 
 		handler = new Handler();
 		menu = new Menu(this, handler);
-		counter = new Counter();
 		this.addKeyListener(new KeyInput(handler,this));
 		this.addMouseListener(menu);
 		this.addMouseListener(new MouseInput(this, handler));
@@ -68,7 +71,7 @@ public class GameClass extends Canvas implements Runnable {
 		hud = new HUD();
 		r = new Random();
 	
-	}
+	}	
 
 	public synchronized void start() throws InterruptedException {
 		thread = new Thread(this);
@@ -108,7 +111,8 @@ public class GameClass extends Canvas implements Runnable {
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println(("FPS: " + frames));
+				hud.setFrames(frames);
+				//System.out.println(("FPS: " + frames));
 				frames = 0;
 			}
 		}
@@ -121,14 +125,15 @@ public class GameClass extends Canvas implements Runnable {
 			if(!paused){ 
 				
 				handler.tick();
-				hud.tick();
-				if (gameState == STATE.Menu) {
-				menu.tick();
-				}
-				if (gameState == STATE.Counter) {
-				counter.tick();
+				if (gameState == STATE.GameClass) {
+					hud.tick();
 				}
 			}
+		}
+		if (gameState == STATE.Menu) {
+			menu.tick();
+			hud.score(0);
+			hud.setLevel(0);
 		}
 			
 	}
@@ -147,8 +152,17 @@ public class GameClass extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		if(paused) {
+			PointerInfo a = MouseInfo.getPointerInfo();
+			Point b = a.getLocation();
+			int pointerX = (int) b.getX();
+			int pointerY = (int) b.getY();
+			
 			int buttonHeight = (GameClass.HEIGHT - ((GameClass.HEIGHT / 120) * 52)) / 17 * 2;
 			int buttonWidth = GameClass.WIDTH / 3;
+			
+			int w = GameClass.WIDTH;
+			int h = GameClass.HEIGHT;
+			
 			int fontSize = (int) (buttonHeight * 0.75);
 			Color c = new Color(1, 1, 1, .1f);
 			
@@ -161,7 +175,45 @@ public class GameClass extends Canvas implements Runnable {
 
 			Font font2 = new Font("calibri light", 1, fontSize);
 			g.setFont(font2);
-			g.setColor(Color.WHITE);
+			
+			Rectangle resume = new Rectangle(w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight);
+
+			if (resume.contains(pointerX, pointerY)) {
+				g.setColor(c);
+				g.drawRect(w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight);
+				g.setColor(Color.WHITE);
+				g.fillRect(w / 2 - w / 6 + 1, h / 120 * 38 + (68 * (h / 120) / 17 * 3) + 1, buttonWidth - 2, buttonHeight - 2);
+				g.setColor(Color.BLACK);
+				int widthResume = g.getFontMetrics().stringWidth("Resume");
+				g.drawString("Resume", (w - widthResume) / 2, h / 120 * 38 + (68 * (h / 120) / 17 * 3) + fontSize);
+				g.setColor(Color.WHITE);
+			} else {
+				g.drawRect(w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight);
+				g.setColor(c);
+				g.fillRect(w / 2 - w / 6 + 1, h / 120 * 38 + (68 * (h / 120) / 17 * 3) + 1, buttonWidth - 2, buttonHeight - 2);
+				g.setColor(Color.WHITE);
+				int widthResume = g.getFontMetrics().stringWidth("Resume");
+				g.drawString("Resume", (w - widthResume) / 2, h / 120 * 38 + (68 * (h / 120) / 17 * 3) + fontSize);
+			}
+			Rectangle quitToMenu = new Rectangle(w / 2 - w / 6 + 1, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + 1, buttonWidth - 2, buttonHeight - 2);
+
+			if (quitToMenu.contains(pointerX, pointerY)) {
+				g.setColor(c);
+				g.drawRect(w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 6), buttonWidth, buttonHeight);
+				g.setColor(Color.WHITE);
+				g.fillRect(w / 2 - w / 6 + 1, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + 1, buttonWidth - 2, buttonHeight - 2);
+				g.setColor(Color.BLACK);
+				int widthQuitToMenu = g.getFontMetrics().stringWidth("Quit to menu");
+				g.drawString("Quit to menu", (w - widthQuitToMenu) / 2, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + fontSize);
+				g.setColor(Color.WHITE);
+			} else {
+				g.drawRect(w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 6), buttonWidth, buttonHeight);
+				g.setColor(c);
+				g.fillRect(w / 2 - w / 6 + 1, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + 1, buttonWidth - 2, buttonHeight - 2);
+				g.setColor(Color.WHITE);
+				int widthQuitToMenu = g.getFontMetrics().stringWidth("Quit to menu");
+				g.drawString("Quit to menu", (w - widthQuitToMenu) / 2, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + fontSize);
+			}
 		}
 		
 		// keep this one up
@@ -176,8 +228,6 @@ public class GameClass extends Canvas implements Runnable {
 			hud.render(g);
 		} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Settings || gameState == STATE.Leaderboard || gameState == STATE.Difficulty1){
 			menu.render(g);
-		} else if (gameState == STATE.Counter) {
-			counter.render(g);
 		}
 
 		g.dispose();

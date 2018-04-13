@@ -16,7 +16,8 @@ public class Opponent extends GameObject {
 	
 	private int centerY;
 	// width and height
-	public static int basicHeight = GameClass.HEIGHT/6; 
+	public static int basicHeight = GameClass.HEIGHT/6;
+	private static int basicWidth = (GameClass.WIDTH / 160) * 3;
 
 	public Opponent(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -24,7 +25,7 @@ public class Opponent extends GameObject {
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(x, y - 5, 32, basicHeight + 5);
+		return new Rectangle(x, y, basicWidth, basicHeight);
 
 	}
 
@@ -57,7 +58,7 @@ public class Opponent extends GameObject {
 	public void render(Graphics g) {
 
 		g.setColor(Color.white);
-		g.fillRect(x, y, 32, basicHeight);
+		g.fillRect(x, y, basicWidth, basicHeight);
 	}
 
 	public static int getBasicHeight() {

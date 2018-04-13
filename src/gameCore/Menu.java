@@ -33,6 +33,8 @@ public class Menu extends MouseAdapter {
 
 	private int mx;
 	private int my;
+	private static int basicWidth = (GameClass.WIDTH / 160) * 3;
+	private static int basicHeight = GameClass.HEIGHT / 5;
 
 	private int buttonHeight = (h - ((h / 120) * 52)) / 17 * 2;
 	private int buttonWidth = w / 3;
@@ -48,27 +50,27 @@ public class Menu extends MouseAdapter {
 
 				game.setHandler(1);
 				game.gameState = STATE.GameClass;
-				handler.addObject(new Player(64, h / 2 - 32, ID.Player, handler));
+				handler.addObject(new Player(64, h / 2 - (basicHeight/2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
-				handler.addObject(new Opponent(w - 96, h / 2 - 32, ID.Opponent, handler));
+				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight/2), ID.Opponent, handler));
 
 			}
 			if (mouseOver(mx, my, w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight)) {
 
 				game.setHandler(1);
 				game.gameState = STATE.GameClass;
-				handler.addObject(new Player(64, h / 2 - 32, ID.Player, handler));
+				handler.addObject(new Player(64, h / 2 - (basicHeight/2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
-				handler.addObject(new Opponent(w - 96, h / 2 - 32, ID.Opponent, handler));
+				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight/2), ID.Opponent, handler));
 
 			}
 			if (mouseOver(mx, my, w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 6), buttonWidth, buttonHeight)) {
 
 				game.setHandler(1);
 				game.gameState = STATE.GameClass;
-				handler.addObject(new Player(64, h / 2 - 32, ID.Player, handler));
+				handler.addObject(new Player(64, h / 2 - (basicHeight/2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
-				handler.addObject(new Opponent(w - 96, h / 2 - 32, ID.Opponent, handler));
+				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight/2), ID.Opponent, handler));
 			}
 
 		}
@@ -85,9 +87,9 @@ public class Menu extends MouseAdapter {
 
 				game.setHandler(1);
 				game.gameState = STATE.GameClass;
-				handler.addObject(new Player(64, h / 2 - 32, ID.Player, handler));
+				handler.addObject(new Player(64, h / 2 - (basicHeight/2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
-				handler.addObject(new Player2(w - 96, h / 2 - 32, ID.Player2, handler));
+				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight/2), ID.Opponent, handler));
 			}
 
 			//Leaderboard
