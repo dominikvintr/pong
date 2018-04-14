@@ -40,10 +40,10 @@ public class MouseInput extends MouseAdapter {
 		
 		if (game.gameState == STATE.GameClass) {
 			if (GameClass.paused == true) {
-				if(mouseOver(mx, my, 1, 1, GameClass.WIDTH/2, GameClass.HEIGHT)) {
+				if(mouseOver(mx, my, w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight)) {
 					GameClass.paused = false;
 				}
-				if (mouseOver(mx, my, w/2, 1, GameClass.WIDTH/2, GameClass.HEIGHT)) {
+				if (mouseOver(mx, my,w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 6), buttonWidth, buttonHeight)) {
 					game.setHandler(0);
 					game.gameState = STATE.Menu;
 					GameClass.paused = false;

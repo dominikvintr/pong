@@ -31,7 +31,7 @@ public class Sounds {
 					if (fileName.equals("ImpactSound.wav")) {
 					FloatControl gainControl = 
 					    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-					gainControl.setValue(0.0f - 30); // Reduce volume by X decibels
+					gainControl.setValue(0.0f - 70); // Reduce volume by X decibels
 					}
 					
 					clip.start();

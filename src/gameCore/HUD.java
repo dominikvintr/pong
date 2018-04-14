@@ -42,7 +42,6 @@ public class HUD {
 		Font font = new Font("calibri light", 1, fontSize);
 		g.setFont(font);
 		g.setColor(c);
-		g.drawRect(GameClass.WIDTH / 2 - 10, 0, 20, GameClass.HEIGHT - 1);
 
 		g.setColor(Color.WHITE);
 		g.drawRect(w / 160, w / 160, w - (2 * (w / 160)), (w / 160) * 3);
