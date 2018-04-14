@@ -6,6 +6,8 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.Line;
 
 public class Sounds {
 
@@ -21,9 +23,17 @@ public class Sounds {
 
 			public void run() {
 				try {
-					Clip clip = AudioSystem.getClip();
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
+					
+					Clip clip = AudioSystem.getClip();
 					clip.open(inputStream);
+					
+					if (fileName.equals("ImpactSound.wav")) {
+					FloatControl gainControl = 
+					    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					gainControl.setValue(0.0f - 30); // Reduce volume by X decibels
+					}
+					
 					clip.start();
 				} catch (Exception e) {
 					System.out.println("play sound error: " + e.getMessage() + " for " + fileName);

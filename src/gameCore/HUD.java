@@ -16,7 +16,7 @@ public class HUD {
 	private int buttonHeight = (w / 160) * 3;
 	private int fontSize = (int) (buttonHeight * 0.75);
 	private int frames;
-	
+
 	public void setFrames(int fps) {
 		frames = fps;
 	}
@@ -26,6 +26,13 @@ public class HUD {
 	public void tick() {
 
 		score++;
+		if (score < 1000) {
+			level = 1;
+		}
+		
+		if (score%1000 == 0) {
+			level = level +1;
+		}
 
 	}
 
@@ -43,11 +50,14 @@ public class HUD {
 		g.setColor(c);
 		g.fillRect(w / 160, w / 160, w - (2 * (w / 160)), (w / 160) * 3);
 		g.fillRect(w / 160, h - (4 * (w / 160)), w - (2 * (w / 160)), (w / 160) * 3);
-		
+
 		g.setColor(Color.WHITE);
 		int widthFrames = g.getFontMetrics().stringWidth("FPS: 100");
 		g.drawString("Score: " + score, 2 * (w / 160), w / 160 + fontSize);
 		g.drawString("FPS: " + frames, w - (2 * (w / 160)) - widthFrames, w / 160 + fontSize);
+
+		int widthLevel = g.getFontMetrics().stringWidth("Level " + level);
+		g.drawString("Level " + level, w / 2 - (widthLevel/2), w / 160 + fontSize);
 
 	}
 
