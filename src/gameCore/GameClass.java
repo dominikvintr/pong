@@ -57,6 +57,8 @@ public class GameClass extends Canvas implements Runnable {
 
 	public STATE gameState = STATE.Menu;
 
+	private int hudOption;
+
 
 	public GameClass() throws InterruptedException {
 
@@ -222,14 +224,13 @@ public class GameClass extends Canvas implements Runnable {
 			handler.render(g);
 		}
 		if (!(handlerOption == 1)) {
-			handler.clear();
-		}
-		if (gameState == STATE.GameClass) {
-			hud.render(g);
-		} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Settings || gameState == STATE.Leaderboard || gameState == STATE.Difficulty1){
+			handler.clear();;
+		}  if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Settings || gameState == STATE.Leaderboard || gameState == STATE.Difficulty1){
 			menu.render(g);
+		} if (gameState == STATE.GameClass) {
+			hud.setOption(hudOption);
+			hud.render(g);
 		}
-
 		g.dispose();
 		bs.show();
 	}
@@ -245,5 +246,9 @@ public class GameClass extends Canvas implements Runnable {
 
 	public static void main(String args[]) throws InterruptedException {
 		new GameClass();
+	}
+
+	public void setOption(int i) {
+		hudOption = i;
 	}
 }

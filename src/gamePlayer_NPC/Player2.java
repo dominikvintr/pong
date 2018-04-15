@@ -16,6 +16,7 @@ public class Player2 extends GameObject {
 
 	Random r = new Random();
 	Handler handler;
+	private int offset = GameClass.WIDTH / 160;
 	
 	// width and height
 	private static int basicHeight = GameClass.HEIGHT/6;
@@ -33,7 +34,8 @@ public class Player2 extends GameObject {
 		y += velY;
 
 		//x = GameClass.clamp(x, 0, GameClass.WIDTH);
-		y = GameClass.clamp(y, 0, GameClass.HEIGHT - basicHeight);
+		//y = GameClass.clamp(y, 0, GameClass.HEIGHT - basicHeight);
+		y = GameClass.clamp(y, (4 * (offset)), GameClass.HEIGHT - (4 * (offset)) -basicHeight);
 
 	}
 	@Override

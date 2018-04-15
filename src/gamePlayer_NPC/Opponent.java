@@ -18,6 +18,7 @@ public class Opponent extends GameObject {
 	// width and height
 	public static int basicHeight = GameClass.HEIGHT/6;
 	private static int basicWidth = (GameClass.WIDTH / 160) * 3;
+	private int offset = GameClass.WIDTH / 160;
 
 	public Opponent(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -50,7 +51,7 @@ public class Opponent extends GameObject {
 		y = Y(centerY) - ((getBounds().height)/2);
 
 		//x = GameClass.clamp(x, 0, GameClass.WIDTH);
-		y = GameClass.clamp(y, 0, GameClass.HEIGHT - basicHeight);
+		y = GameClass.clamp(y, (4 * (offset)), GameClass.HEIGHT - (4 * (offset)) -basicHeight);
 
 	}
 

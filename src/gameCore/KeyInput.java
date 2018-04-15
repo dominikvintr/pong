@@ -59,7 +59,7 @@ public class KeyInput extends KeyAdapter {
 		}
 		
 		if (key == KeyEvent.VK_ESCAPE) {
-			if (game.gameState == STATE.Help || game.gameState == STATE.Leaderboard || game.gameState == STATE.Settings) {
+			if (game.gameState == STATE.Help || game.gameState == STATE.Leaderboard || game.gameState == STATE.Settings || game.gameState == STATE.Difficulty1) {
 				game.gameState = STATE.Menu;
 			}
 		}

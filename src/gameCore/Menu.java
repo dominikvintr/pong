@@ -19,8 +19,10 @@ import gamePlayer_NPC.Player2;
 
 public class Menu extends MouseAdapter {
 	
+	private static int hudOption;
 	private GameClass game;
 	private Handler handler;
+	private HUD hud;
 	
 	public Menu(GameClass game, Handler handler) {
 		this.game = game;
@@ -81,6 +83,8 @@ public class Menu extends MouseAdapter {
 	// mouse pointer
 	int pointerX;
 	int pointerY;
+	
+	Sounds soundType = new Sounds();
 
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
@@ -90,21 +94,27 @@ public class Menu extends MouseAdapter {
 		if (game.gameState == STATE.Difficulty1) {
 				// 3 lives
 			if (mouseOver(mx, my, centerButtonX, centerButton1Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.setHandler(1);
+				game.setOption(11);
 				game.gameState = STATE.GameClass;
 				handler.addObject(new Player(64, h / 2 - (basicHeight / 2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
 				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight / 2), ID.Opponent, handler));
 			}	// 5 lives
 			if (mouseOver(mx, my, centerButtonX, centerButton2Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.setHandler(1);
+				game.setOption(12);
 				game.gameState = STATE.GameClass;
 				handler.addObject(new Player(64, h / 2 - (basicHeight / 2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
 				handler.addObject(new Opponent(w - (64 + basicWidth), h / 2 - (basicHeight / 2), ID.Opponent, handler));
 			}	// 7 lives
 			if (mouseOver(mx, my, centerButtonX, centerButton3Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.setHandler(1);
+				game.setOption(13);
 				game.gameState = STATE.GameClass;
 				handler.addObject(new Player(64, h / 2 - (basicHeight / 2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
@@ -115,26 +125,33 @@ public class Menu extends MouseAdapter {
 		if (game.gameState == STATE.Menu) {
 				// 1 player
 			if (mouseOver(mx, my, centerButtonX, centerButton1Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Difficulty1;
 			}	// 2 players
 			if (mouseOver(mx, my, centerButtonX, centerButton2Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.setHandler(1);
 				game.gameState = STATE.GameClass;
 				handler.addObject(new Player(64, h / 2 - (basicHeight / 2), ID.Player, handler));
 				handler.addObject(new Ball(w / 2, h / 2, ID.Ball, handler));
 				handler.addObject(new Player2(w - (64 + basicWidth), h / 2 - (basicHeight / 2), ID.Player2, handler));
+				game.setOption(2);
 			}	// Leaderboard
 			if (mouseOver(mx, my, centerButtonX, centerButton3Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Leaderboard;
 			}	// Settings
 			if (mouseOver(mx, my, centerButtonX, centerButton4Y, buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Settings;
 			}	// exit
 			if (mouseOver(mx, my, centerButtonX, centerButton6Y , buttonWidth, buttonHeight)) {
+				soundType.play("click");
 				try {Thread.sleep(500);} catch (InterruptedException e1) {e1.printStackTrace();}
 				System.exit(1);
 			}	// help
 			if (mouseOver(mx, my, centerButtonX, centerButton5Y, buttonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Help;
 			}
 		}
@@ -142,6 +159,7 @@ public class Menu extends MouseAdapter {
 		if (game.gameState == STATE.Settings) {
 				// back
 			if (mouseOver(mx, my, centerButtonX, centerButton6Y, buttonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}	// master volume
 			if (mouseOver(mx, my, leftButtonX,rightButtonY, rightButtonWidth,buttonHeight)) {
@@ -155,30 +173,41 @@ public class Menu extends MouseAdapter {
 				currentMusicVolume = mxTable2;
 			}	// czech language
 			if (mouseOver(mx, my, rightButtonX,rightButtonY, rightButtonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}	// english language
 			if (mouseOver(mx, my, rightButtonX,rightButtonY, rightButtonWidth,buttonHeight + fieldHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}
 		}		
 //LEADERBOAD/////////////////////////////////////LEADEBOARD/////////////////////////////////////LEADERBOARD//
 		if (game.gameState == STATE.Leaderboard) {
 			if (mouseOver(mx, my, centerButtonX, centerButton6Y, buttonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}
 		}
 //HELP//////////////////////////////////////////////HELP///////////////////////////////////////////////HELP//
 		if (game.gameState == STATE.Help) {
 			if (mouseOver(mx, my, centerButtonX, centerButton6Y, buttonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}
 		}
 //DIFFICULTY 1//////////////////////////////////DIFFICULTY 1///////////////////////////////////DIFFICULTY 1//
 		if (game.gameState == STATE.Difficulty1) {
 			if (mouseOver(mx, my, centerButtonX, centerButton6Y, buttonWidth,buttonHeight)) {
+				soundType.play("click");
 				game.gameState = STATE.Menu;
 			}
 		}
+	}
+	private static void setOption(int i) {
+		hudOption = i;
+	}
+	public int hudOption() {
+		return hudOption;
 	}
 	public void mouseReleased(MouseEvent e) {
 	}

@@ -14,9 +14,11 @@ public class Sounds {
 	private static String fileName;
 
 	public synchronized void play(String type) {
-		switch (type) {
-			case "impact":
-				fileName = "ImpactSound.wav";
+		
+		if (type.equals("impact")) {
+			fileName = "ImpactSound.wav";
+		} else if (type.equals("click")){
+			fileName = "clickSound.wav";
 		}
 
 		new Thread(new Runnable() {
@@ -24,16 +26,13 @@ public class Sounds {
 			public void run() {
 				try {
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
-					
 					Clip clip = AudioSystem.getClip();
 					clip.open(inputStream);
 					
-					if (fileName.equals("ImpactSound.wav")) {
-					FloatControl gainControl = 
-					    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-					gainControl.setValue(0.0f - 70); // Reduce volume by X decibels
+					if (fileName.equals("ImpactSound.wav") || fileName.equals("clickSound.wav")) {
+					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					gainControl.setValue(0.0f - 10); // Reduce volume by X decibels
 					}
-					
 					clip.start();
 				} catch (Exception e) {
 					System.out.println("play sound error: " + e.getMessage() + " for " + fileName);
