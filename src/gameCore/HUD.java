@@ -21,6 +21,7 @@ public class HUD {
 	Ball ball;
 	Handler handler;
 	Values val;
+	GameObject gobj;
 
 	private int score = 0;
 	private int level = 1;
@@ -40,6 +41,7 @@ public class HUD {
 
 	ImageObserver observer;
 	private int modifier;
+	private int izit;
 	
 	public void tick() {
 
@@ -48,7 +50,6 @@ public class HUD {
 			level = 1;
 		if (score % 1000 == 0)
 			level = level + 1;
-		
 	}
 
 	public void setLives(int i) {
@@ -63,7 +64,7 @@ public class HUD {
 			lives = lives;
 
 		}
-
+		
 	}
 
 	public void render(Graphics g) {

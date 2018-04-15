@@ -19,6 +19,7 @@ public class MouseInput extends MouseAdapter {
 	
 	private GameClass game;
 	private Handler handler;
+	HUD hud;
 	
 	private int mx;
 	private int my;
@@ -33,6 +34,8 @@ public class MouseInput extends MouseAdapter {
 	private int buttonWidth = w / 3;
 	
 	Sounds soundType = new Sounds();
+	private int option;
+	private int score;
 	
 	public MouseInput(GameClass game, Handler handler) {
 		this.game = game;
@@ -77,10 +80,14 @@ public class MouseInput extends MouseAdapter {
 	}
 
 	public void tick() {
-
+		score = hud.getScore();
+		System.out.println(score);
 	}
 
 	public void render(Graphics g) {
+	}
+	public void setOption(int opt) {
+		option = opt;
 	}
 	
 

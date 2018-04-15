@@ -45,15 +45,11 @@ public class Ball extends GameObject {
 		velY = collision2(velY);
 		x += velX;
 		y = (int) (y + velY);
+		y = GameClass.clamp(y, (4 * (offset)), GameClass.HEIGHT - (4 * (offset)) - 32);
 		if (y <= (4 * (offset)) || y >= GameClass.HEIGHT - 32 - (4 * (offset)))
 			velY *= -1;
 		if (x <= 0 || x >= GameClass.WIDTH - 32)
 			velX *= 1;
-		if (x < 0) {
-			//val.setBallX(Ball.this.getX());
-			//game.setX(10);
-			//hud.setX(10);
-		}
 		
 	}
 	private int collision(int velX) {
@@ -86,15 +82,47 @@ public class Ball extends GameObject {
 				if (getBounds().intersects(tempObject.getBounds())) {
 					//System.out.println(Ball.this.getY());
 					//System.out.println(tempObject.getY());
-					if (Ball.this.getY() + 16 <= (tempObject.getY() + basicHeight / 5)) {
+					if (Ball.this.getY() + 16 <= (tempObject.getY() + basicHeight / 21)) {
 						velY = -10;
-					} else if (Ball.this.getY() <= tempObject.getY() + (basicHeight / 5)*2 && Ball.this.getY() + 16 >= tempObject.getY() + basicHeight / 5) {
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*2 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)) {
+						velY = -9;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*3 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*2) {
+						velY = -8;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*4 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*3) {
+						velY = -7;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*5 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*4) {
+						velY = -6;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*6 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*5) {
 						velY = -5;
-					} else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 5)*3 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 5)*2) {
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*7 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*6) {
+						velY = -4;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*8 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*7) {
+						velY = -3;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*9 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*8) {
+						velY = -2;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*10 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*9) {
+						velY = -1;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*11 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*10) {
+						velY = 0;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*12 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*11) {
 						velY = 1;
-					} else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 5)*4 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 5)*3) {
+					}   else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*13 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*12) {
+						velY = 2;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*14 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*13) {
+						velY = 3;
+					} 	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*15 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*14) {
+						velY = 4;
+					}  	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*16 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*15) {
 						velY = 5;
-					} else if (Ball.this.getY() + 16 <= tempObject.getY() + basicHeight && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 5)*4) {
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*17 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*16) {
+						velY = 6;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*18 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*17) {
+						velY = 7;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*19 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*18) {
+						velY = 8;
+					}	else if (Ball.this.getY() + 16 <= tempObject.getY() + (basicHeight / 21)*20 && Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*19) {
+						velY = 9;
+					}	else if (Ball.this.getY() + 16 >= tempObject.getY() + (basicHeight / 21)*20) {
 						velY = 10;
 					}
 					

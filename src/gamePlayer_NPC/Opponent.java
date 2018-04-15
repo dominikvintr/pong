@@ -13,7 +13,7 @@ public class Opponent extends GameObject {
 	Random r = new Random();
 	Handler handler;
 	
-	int value = r.nextInt((1 - (-1)) + 1) -1;
+	
 	
 	
 	private int centerY;
@@ -21,6 +21,7 @@ public class Opponent extends GameObject {
 	public static int basicHeight = GameClass.HEIGHT/6;
 	private static int basicWidth = (GameClass.WIDTH / 160) * 3;
 	private int offset = GameClass.WIDTH / 160;
+	private int xx;
 
 	public Opponent(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -35,24 +36,31 @@ public class Opponent extends GameObject {
 	private int Y(int centerY) {
 		this.centerY = centerY;
 		for (int i = 0; i < handler.getObject().size(); i++) {
-
+			
 			GameObject tempObject = handler.getObject().get(i);
 
 			if (tempObject.getId() == ID.Ball) {
-
-				centerY = (int) tempObject.getBounds().getCenterY();
+				if (tempObject.getX() > (GameClass.WIDTH - (64 + basicWidth) - 42)) {
+					int value = r.nextInt((((getBounds().height)/2) - (-((getBounds().height)/2))) + 1) -((getBounds().height)/2);
+					
+					centerY = (int) tempObject.getBounds().getCenterY() + value;
+				} else {
+					centerY = (int) tempObject.getBounds().getCenterY();
+				}
 			}
 		}
 		return centerY;
 	}
+	
+	
+	
 
 	@Override
 	public void tick() {
-
+		
 		x += velX;
 		y = Y(centerY) - ((getBounds().height)/2);
-
-		//x = GameClass.clamp(x, 0, GameClass.WIDTH);
+		
 		y = GameClass.clamp(y, (4 * (offset)), GameClass.HEIGHT - (4 * (offset)) -basicHeight);
 
 	}

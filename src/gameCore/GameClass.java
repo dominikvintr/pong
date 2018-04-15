@@ -44,6 +44,7 @@ public class GameClass extends Canvas implements Runnable {
 	private HUD hud;
 	private Menu menu;
 	private Values val;
+	private MouseInput input;
 	
 	public int options;
 	private int handlerOption = 1;
@@ -131,10 +132,11 @@ public class GameClass extends Canvas implements Runnable {
 				handler.tick();
 				if (gameState == STATE.GameClass) {
 					handler.tick();
-					//handler.tick();
+					// handler.tick();
 					//handler.tick();
 					//handler.tick();
 					hud.tick();
+					System.out.println(hud.getScore());
 				}
 			}
 		}
@@ -155,9 +157,6 @@ public class GameClass extends Canvas implements Runnable {
 			this.createBufferStrategy(3);
 			return;
 		}
-		
-		
-		
 		Graphics g = bs.getDrawGraphics();
 
 		g.setColor(Color.black);
