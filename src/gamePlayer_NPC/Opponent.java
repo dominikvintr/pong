@@ -21,7 +21,6 @@ public class Opponent extends GameObject {
 	public static int basicHeight = GameClass.HEIGHT/6;
 	private static int basicWidth = (GameClass.WIDTH / 160) * 3;
 	private int offset = GameClass.WIDTH / 160;
-	private int xx;
 
 	public Opponent(int x, int y, ID id, Handler handler) {
 		super(x, y, id);

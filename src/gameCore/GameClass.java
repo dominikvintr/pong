@@ -43,8 +43,6 @@ public class GameClass extends Canvas implements Runnable {
 	private Handler handler;
 	private HUD hud;
 	private Menu menu;
-	private Values val;
-	private MouseInput input;
 	
 	public int options;
 	private int handlerOption = 1;
@@ -75,7 +73,6 @@ public class GameClass extends Canvas implements Runnable {
 		
 		
 		hud = new HUD();
-		r = new Random();
 	
 	}	
 
@@ -132,7 +129,7 @@ public class GameClass extends Canvas implements Runnable {
 				handler.tick();
 				if (gameState == STATE.GameClass) {
 					handler.tick();
-					// handler.tick();
+					//handler.tick();
 					//handler.tick();
 					//handler.tick();
 					hud.tick();

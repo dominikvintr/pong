@@ -6,10 +6,8 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import gameCore.GameClass;
-import gameCore.HUD;
 import gameCore.Handler;
 import gameCore.Sounds;
-import gameCore.Values;
 
 public class Ball extends GameObject {
 
@@ -19,7 +17,6 @@ public class Ball extends GameObject {
 	public static int basicHeight = GameClass.HEIGHT / 6;
 	private Handler handler;
 	GameClass game;
-	Values val;
 	private int offset = GameClass.WIDTH / 160;
 
 	public Ball(int x, int y, ID id, Handler handler) {

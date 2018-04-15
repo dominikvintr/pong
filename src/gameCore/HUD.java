@@ -3,13 +3,9 @@ package gameCore;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
-import gameCore.GameClass.STATE;
 import gamePlayer_NPC.Ball;
-import gamePlayer_NPC.GameObject;
-import gamePlayer_NPC.ID;
 
 public class HUD {
 
@@ -20,8 +16,6 @@ public class HUD {
 	Menu menu;
 	Ball ball;
 	Handler handler;
-	Values val;
-	GameObject gobj;
 
 	private int score = 0;
 	private int level = 1;
@@ -29,7 +23,6 @@ public class HUD {
 	private int fontSize = (int) (buttonHeight * 0.75);
 	private int frames;
 	private int option;
-	private int lives;
 
 	public void setFrames(int fps) {
 		frames = fps;
@@ -41,7 +34,6 @@ public class HUD {
 
 	ImageObserver observer;
 	private int modifier;
-	private int izit;
 	
 	public void tick() {
 
@@ -52,23 +44,7 @@ public class HUD {
 			level = level + 1;
 	}
 
-	public void setLives(int i) {
-
-		switch (option) {
-		case 11:
-			lives = 3;
-		}
-		if (i == -1) {
-			lives = lives - 1;
-		} else if (i == 1) {
-			lives = lives;
-
-		}
-		
-	}
-
 	public void render(Graphics g) {
-		//System.out.println(val.getBallX());
 		Font font = new Font("calibri light", 1, 90);
 		g.setFont(font);
 		g.setColor(Color.WHITE);

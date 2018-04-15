@@ -95,7 +95,6 @@ public class Menu extends MouseAdapter {
 	int pointerY;
 
 	Sounds soundType = new Sounds();
-	private int language;
 	private int on = 1;
 	private int num = 0;
 
@@ -248,11 +247,9 @@ public class Menu extends MouseAdapter {
 			} // czech language
 			if (mouseOver(mx, my, rightButtonX, rightButtonY, rightButtonWidth, buttonHeight)) {
 				soundType.play("click");
-				language = 1;
 			} // english language
 			if (mouseOver(mx, my, rightButtonX, rightButtonY, rightButtonWidth, buttonHeight + fieldHeight)) {
 				soundType.play("click");
-				language = 0;
 			}
 		}
 		// LEADERBOAD/////////////////////////////////////LEADEBOARD/////////////////////////////////////LEADERBOARD//
