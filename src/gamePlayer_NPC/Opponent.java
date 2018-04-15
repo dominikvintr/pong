@@ -13,6 +13,8 @@ public class Opponent extends GameObject {
 	Random r = new Random();
 	Handler handler;
 	
+	int value = r.nextInt((1 - (-1)) + 1) -1;
+	
 	
 	private int centerY;
 	// width and height

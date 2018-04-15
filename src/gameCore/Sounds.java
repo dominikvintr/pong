@@ -12,6 +12,12 @@ import javax.sound.sampled.Line;
 public class Sounds {
 
 	private static String fileName;
+	private static float num;
+	
+	public void setNum(int i) {
+		num = (float)i;
+		System.out.println(num);
+	}
 
 	public synchronized void play(String type) {
 		
@@ -31,7 +37,7 @@ public class Sounds {
 					
 					if (fileName.equals("ImpactSound.wav") || fileName.equals("clickSound.wav")) {
 					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-					gainControl.setValue(0.0f - 10); // Reduce volume by X decibels
+					gainControl.setValue(0.0f - num); // Reduce volume by X decibels
 					}
 					clip.start();
 				} catch (Exception e) {

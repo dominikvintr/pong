@@ -17,6 +17,7 @@ public class Player extends GameObject {
 	Random r = new Random();
 	Handler handler;
 	private int offset = GameClass.WIDTH / 160;
+	private int mode;
 	
 	// width and height
 	private static int basicHeight = GameClass.HEIGHT/6;
@@ -31,7 +32,11 @@ public class Player extends GameObject {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, basicWidth, basicHeight);
 	}
-
+	
+	public void setMode(int i) {
+		mode = i;
+	}
+	
 	@Override
 	public void tick() {
 		

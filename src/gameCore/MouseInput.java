@@ -43,7 +43,7 @@ public class MouseInput extends MouseAdapter {
 		mx = e.getX();
 		my = e.getY();
 		
-		if (game.gameState == STATE.GameClass) {
+		if (game.gameState == STATE.GameClass || game.gameState == STATE.Leaderboard) {
 			if (GameClass.paused == true) {
 				if(mouseOver(mx, my, w / 2 - w / 6, h / 120 * 38 + (68 * (h / 120) / 17 * 3), buttonWidth, buttonHeight)) {
 					soundType.play("click");
@@ -55,6 +55,7 @@ public class MouseInput extends MouseAdapter {
 					game.gameState = STATE.Menu;
 					GameClass.paused = false;
 				}
+				
 				
 			}
 		}

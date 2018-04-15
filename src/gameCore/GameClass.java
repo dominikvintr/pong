@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
+import java.util.LinkedList;
 import java.util.Random;
 
 import gameCore.GameClass.STATE;
@@ -42,6 +43,7 @@ public class GameClass extends Canvas implements Runnable {
 	private Handler handler;
 	private HUD hud;
 	private Menu menu;
+	private Values val;
 	
 	public int options;
 	private int handlerOption = 1;
@@ -69,7 +71,8 @@ public class GameClass extends Canvas implements Runnable {
 		this.addMouseListener(new MouseInput(this, handler));
 
 		new Window(WIDTH, HEIGHT, "Let's do this!", this);
-
+		
+		
 		hud = new HUD();
 		r = new Random();
 	
@@ -122,12 +125,15 @@ public class GameClass extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-
 		if (gameState == STATE.GameClass) {
 			if(!paused){ 
 				
 				handler.tick();
 				if (gameState == STATE.GameClass) {
+					handler.tick();
+					//handler.tick();
+					//handler.tick();
+					//handler.tick();
 					hud.tick();
 				}
 			}
@@ -137,7 +143,10 @@ public class GameClass extends Canvas implements Runnable {
 			hud.score(0);
 			hud.setLevel(0);
 		}
-			
+		if (gameState == STATE.Menu) {
+			handler.tick();
+			//hud.setX(X);
+		}	
 	}
 
 	private void render() {
@@ -146,6 +155,7 @@ public class GameClass extends Canvas implements Runnable {
 			this.createBufferStrategy(3);
 			return;
 		}
+		
 		
 		
 		Graphics g = bs.getDrawGraphics();
@@ -216,6 +226,7 @@ public class GameClass extends Canvas implements Runnable {
 				int widthQuitToMenu = g.getFontMetrics().stringWidth("Quit to menu");
 				g.drawString("Quit to menu", (w - widthQuitToMenu) / 2, h / 120 * 38 + (68 * (h / 120) / 17 * 6) + fontSize);
 			}
+			System.out.println();
 		}
 		
 		// keep this one up
@@ -224,7 +235,7 @@ public class GameClass extends Canvas implements Runnable {
 			handler.render(g);
 		}
 		if (!(handlerOption == 1)) {
-			handler.clear();;
+			handler.clear();			
 		}  if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Settings || gameState == STATE.Leaderboard || gameState == STATE.Difficulty1){
 			menu.render(g);
 		} if (gameState == STATE.GameClass) {

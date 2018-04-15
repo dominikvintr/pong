@@ -1,39 +1,54 @@
 package gameCore;
 
 import java.awt.Canvas;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-public class Window extends Canvas {
+import gameCore.GameClass.STATE;
+import gameCore.Menu;
 
+public class Window extends Canvas {
+	
+	Menu menu;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3960454836806068271L;
+	private int blank = 0;
 
+	public void blank(int bl) {
+		blank  = bl;
+	}
+	
+	
 	public Window(int width, int height, String title, GameClass game) throws InterruptedException {
 		JFrame frame = new JFrame(title);
 		
-	//	frame.setPreferredSize(new Dimension(width, height));
-	//	frame.setMaximumSize(new Dimension(width, height));
-	//	frame.setMinimumSize(new Dimension(wid	th, height));
-	//	if (frame.getHeight() == height)
-		//frame.getContentPane().addMouseListener(new ClickListener());
+		
+		// frame.setPreferredSize(new Dimension(width, height));
+		// frame.setMaximumSize(new Dimension(width, height));
+		// frame.setMinimumSize(new Dimension(wid th, height));
+		// if (frame.getHeight() == height)
+		// frame.getContentPane().addMouseListener(new ClickListener());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.add(game);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setUndecorated(true);
 		frame.setVisible(true);
-		
+
 		Toolkit tool = Toolkit.getDefaultToolkit();
 		int x = (int) tool.getScreenSize().getWidth();
 		int y = (int) tool.getScreenSize().getHeight();
-		frame.setSize(x,y);
+		frame.setSize(x, y);
 		
 		game.start();
+
 	}
 }
