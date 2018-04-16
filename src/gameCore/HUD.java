@@ -6,7 +6,11 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
 import gamePlayer_NPC.Ball;
-
+/**
+ * Class for heads up display
+ * @author dominikvintr
+ *
+ */
 public class HUD {
 
 	private int w = GameClass.WIDTH;
@@ -23,18 +27,26 @@ public class HUD {
 	private int fontSize = (int) (buttonHeight * 0.75);
 	private int frames;
 	private int option;
-
+	/**
+	 * Retrieves current frames per second from GameClass class
+	 * @param fps
+	 */
 	public void setFrames(int fps) {
 		frames = fps;
 	}
-
+	/**
+	 * Sets game mode
+	 * @param opt
+	 */
 	public void setOption(int opt) {
 		option = opt;
 	}
 
 	ImageObserver observer;
 	private int modifier;
-	
+	/**
+	 * Tick method
+	 */
 	public void tick() {
 
 		score++;
@@ -43,7 +55,10 @@ public class HUD {
 		if (score % 1000 == 0)
 			level = level + 1;
 	}
-
+	/**
+	 * Render method for HUD
+	 * @param g
+	 */
 	public void render(Graphics g) {
 		Font font = new Font("calibri light", 1, 90);
 		g.setFont(font);
@@ -92,19 +107,31 @@ public class HUD {
 		g.drawString("Level " + level, w / 2 - (widthLevel / 2), w / 160 + fontSize);
 
 	}
-
+	/**
+	 * Setter for score
+	 * @param
+	 */
 	public void score(int score) {
 		this.score = score;
 	}
-
+	/**
+	 * Getter for score
+	 * @return
+	 */
 	public int getScore() {
 		return score;
 	}
-
+	/**
+	 * Getter for level
+	 * @return
+	 */
 	public int getLevel() {
 		return level;
 	}
-
+	/**
+	 * Setter for level
+	 * @param level
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}

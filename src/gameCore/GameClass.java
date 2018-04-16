@@ -18,13 +18,14 @@ import gamePlayer_NPC.GameObject;
 import gamePlayer_NPC.ID;
 import gamePlayer_NPC.Opponent;
 import gamePlayer_NPC.Player;
-//import gamePlayer_NPC.Spawn;
 
+/**
+ * Main class including Main method
+ * @author dominikvintr
+ *
+ */
 public class GameClass extends Canvas implements Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4106619175266317446L;
 
 	static Screen sc = new Screen();
@@ -51,16 +52,27 @@ public class GameClass extends Canvas implements Runnable {
 	public void setHandler (int handlerNum) {
 		handlerOption = handlerNum;
 	}
-
+	/**
+	 * STATE enum determinig current game state
+	 * if user is in menu -> STATE.Menu etc.
+	 * @author dominikvintr
+	 *
+	 */
 	public enum STATE {
 		Menu, GameClass, Help, Settings, Leaderboard, Paused, Difficulty1, Difficulty2
 	};
-
+	
+	/**
+	 * As the game is started, the STATE is automatically set  to STATE.Menu
+	 */
 	public STATE gameState = STATE.Menu;
 
 	private int hudOption;
 
-
+	/**
+	 * Method which adds preconditions for the start of the application
+	 * @throws InterruptedException
+	 */
 	public GameClass() throws InterruptedException {
 
 		handler = new Handler();
@@ -75,13 +87,18 @@ public class GameClass extends Canvas implements Runnable {
 		hud = new HUD();
 	
 	}	
-
+	/**
+	 * Method which starts the thread
+	 * @throws InterruptedException
+	 */
 	public synchronized void start() throws InterruptedException {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
 	}
-
+	/**
+	 * Method which stops the thread
+	 */
 	public synchronized void stop() {
 		try {
 			thread.join();
@@ -91,7 +108,11 @@ public class GameClass extends Canvas implements Runnable {
 		}
 
 	}
-
+	/**
+	 * Method which refreshes the game with a tick
+	 * Code is commonly used in Java games such as Minecraft
+	 * Not my own method
+	 */
 	public void run() {
 		this.requestFocus();
 		long lastTime = System.nanoTime();
@@ -121,7 +142,10 @@ public class GameClass extends Canvas implements Runnable {
 		}
 		stop();
 	}
-
+	/**
+	 * All classes have a tick method
+	 * This method evaluates whether other tick methods should be running or not
+	 */
 	private void tick() {
 		if (gameState == STATE.GameClass) {
 			if(!paused){ 
@@ -147,7 +171,9 @@ public class GameClass extends Canvas implements Runnable {
 			//hud.setX(X);
 		}	
 	}
-
+	/**
+	 * Render method uses Graphics to display visual output if called
+	 */
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -241,7 +267,13 @@ public class GameClass extends Canvas implements Runnable {
 		g.dispose();
 		bs.show();
 	}
-
+	/**
+	 * Clamp metod returns integer that is inside 2 parameters describing parameter's maximum and minimal values
+	 * @param var
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public static int clamp(int var, int min, int max) {
 		if (var >= max)
 			return var = max;
@@ -250,11 +282,18 @@ public class GameClass extends Canvas implements Runnable {
 		else
 			return var;
 	}
-
+	/**
+	 * MAIN METHOD
+	 * @param args
+	 * @throws InterruptedException
+	 */
 	public static void main(String args[]) throws InterruptedException {
 		new GameClass();
 	}
-
+	/**
+	 * Sets option for HUD to determine what game mode is requested
+	 * @param i
+	 */
 	public void setOption(int i) {
 		hudOption = i;
 	}

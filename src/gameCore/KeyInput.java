@@ -1,19 +1,27 @@
 package gameCore;
 
-// 
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import gameCore.GameClass.STATE;
 import gamePlayer_NPC.GameObject;
 import gamePlayer_NPC.ID;
-
+/**
+ * Class which reads keyboard input
+ * @author dominikvintr
+ *
+ */
 public class KeyInput extends KeyAdapter {
 
 	private Handler handler;
 	private GameClass game;
 	private boolean[] keyDown = new boolean[4];
 
+	/**
+	 * 
+	 * @param handler
+	 * @param game
+	 */
 	public KeyInput(Handler handler, GameClass game) {
 		this.handler = handler;
 		this.game = game;
@@ -24,7 +32,9 @@ public class KeyInput extends KeyAdapter {
 		keyDown[3] = false;
 	}
 
-
+	/**
+	 * Observes which key is being pressed
+	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		for (double mili = 0; mili < 10; mili = mili + 0.200) {
@@ -82,6 +92,9 @@ public class KeyInput extends KeyAdapter {
 		}
 
 	}
+	/**
+	 * Observes when pressed key is released
+	 */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		for (int i = 0; i < handler.getObject().size(); i++) {

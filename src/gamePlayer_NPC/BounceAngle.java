@@ -1,7 +1,11 @@
 package gamePlayer_NPC;
 
 import gameCore.GameClass;
-
+/**
+ * UNUSED CLASS
+ * @author dominikvintr
+ *
+ */
 public class BounceAngle {
 	
 	//private static int gameHeight = GameClass.HEIGHT;

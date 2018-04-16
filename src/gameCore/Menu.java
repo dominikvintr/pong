@@ -22,7 +22,11 @@ import gamePlayer_NPC.ID;
 import gamePlayer_NPC.Opponent;
 import gamePlayer_NPC.Player;
 import gamePlayer_NPC.Player2;
-
+/**
+ * Menu class extending MouseAdapter
+ * @author dominikvintr
+ *
+ */
 public class Menu extends MouseAdapter {
 
 	private static int hudOption;
@@ -31,7 +35,12 @@ public class Menu extends MouseAdapter {
 	private HUD hud;
 	Player player;
 	JFrame frame;
-
+	
+	/**
+	 * Creates menu
+	 * @param game
+	 * @param handler
+	 */
 	public Menu(GameClass game, Handler handler) {
 		this.game = game;
 		this.handler = handler;
@@ -93,11 +102,12 @@ public class Menu extends MouseAdapter {
 	// mouse pointer
 	int pointerX;
 	int pointerY;
-
 	Sounds soundType = new Sounds();
 	private int on = 1;
 	private int num = 0;
-
+	/**
+	 * Observes when and where is mouse pressed
+	 */
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
@@ -318,18 +328,35 @@ public class Menu extends MouseAdapter {
 			}
 		}
 	}
-
+	/**
+	 * Method to set game option
+	 * @param i
+	 */
 	private static void setOption(int i) {
 		hudOption = i;
 	}
-
+	/**
+	 * Method to return game option
+	 * @return
+	 */
 	public int hudOption() {
 		return hudOption;
 	}
-
+	/**
+	 * Observes when mouse is released
+	 */
 	public void mouseReleased(MouseEvent e) {
 	}
-
+	/**
+	 * Finds if mouse cursor position is within given rectangle
+	 * @param mx
+	 * @param my
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @return
+	 */
 	private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
 		if (mx >= x && mx <= x + width) {
 			if (my >= y && my <= y + height) {
@@ -339,10 +366,15 @@ public class Menu extends MouseAdapter {
 		} else
 			return false;
 	}
-
+	/**
+	 * Tick method
+	 */
 	public void tick() {
 	}
-
+	/**
+	 * Render method
+	 * @param g
+	 */
 	public void render(Graphics g) {
 
 		Rectangle onePlayer = new Rectangle(centerButtonX, centerButton1Y, w / 3, buttonHeight);

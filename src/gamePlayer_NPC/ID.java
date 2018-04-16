@@ -1,6 +1,10 @@
 package gamePlayer_NPC;
-
+/**
+ * ID enumeration
+ * @author dominikvintr
+ *
+ */
 public enum ID {
 
-	Player(), BasicEnemy(), Trail(), Opponent(), Ball(), Player2, HUD;
+	Player(), Opponent(), Ball(), Player2, HUD;
 }

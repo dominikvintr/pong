@@ -8,7 +8,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Line;
-
+/**
+ * Class which reads linked music resources and plays them 
+ * @author dominikvintr
+ *
+ */
 public class Sounds {
 
 	private static String fileName;
@@ -18,7 +22,11 @@ public class Sounds {
 		num = (float)i;
 		System.out.println(num);
 	}
-
+/**
+ * Plays a song
+ * Volume can be changed via settings
+ * @param type
+ */
 	public synchronized void play(String type) {
 		
 		if (type.equals("impact")) {

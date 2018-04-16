@@ -8,7 +8,11 @@ import java.util.Random;
 import gameCore.GameClass;
 import gameCore.Handler;
 import gameCore.Sounds;
-
+/**
+ * Class for ball object extending GameObject
+ * @author dominikvintr
+ *
+ */
 public class Ball extends GameObject {
 
 	Random rand = new Random();
@@ -31,11 +35,15 @@ public class Ball extends GameObject {
 		velY = 10*value;
 
 	}
-
+	/**
+	 * Gets ball's bouds
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 32, 32);
 	}
-
+	/**
+	 * Tick Method
+	 */
 	@Override
 	public void tick() {
 		velX = collision(velX);
@@ -49,6 +57,11 @@ public class Ball extends GameObject {
 			velX *= 1;
 		
 	}
+	/**
+	 * Determines if ball collides with other game objects
+	 * @param velX
+	 * @return
+	 */
 	private int collision(int velX) {
 		this.velX = velX;
 		for (int i = 0; i < handler.getObject().size(); i++) {
@@ -68,7 +81,11 @@ public class Ball extends GameObject {
 		}
 		return velX;
 	}
-
+	/**
+	 * Changes velocity via collision position with another game object 
+	 * @param velY
+	 * @return
+	 */
 	private int collision2(double velY) {
 		for (int i = 0; i < handler.getObject().size(); i++) {
 			GameObject tempObject = handler.getObject().get(i);
@@ -129,7 +146,9 @@ public class Ball extends GameObject {
 		System.out.println(velY);
 		return (int) velY;
 	} 
-
+	/**
+	 * Render method
+	 */
 	@Override
 	public void render(Graphics g) {
 		if (GameClass.paused == true) {
@@ -145,7 +164,10 @@ public class Ball extends GameObject {
 			}
 		}
 	}
-
+	/**
+	 * Getter for ball height
+	 * @return
+	 */
 	public static int getHeight() {
 		return 32;
 	}

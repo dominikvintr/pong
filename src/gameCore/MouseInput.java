@@ -14,7 +14,11 @@ import java.awt.event.MouseEvent;
 import gameCore.GameClass.STATE;
 import gamePlayer_NPC.GameObject;
 import gamePlayer_NPC.ID;
-
+/**
+ * Class which reads mouse input
+ * @author dominikvintr
+ *
+ */
 public class MouseInput extends MouseAdapter {
 	
 	private GameClass game;
@@ -36,12 +40,18 @@ public class MouseInput extends MouseAdapter {
 	Sounds soundType = new Sounds();
 	private int option;
 	private int score;
-	
+	/**
+	 * 
+	 * @param game
+	 * @param handler
+	 */
 	public MouseInput(GameClass game, Handler handler) {
 		this.game = game;
 		this.handler = handler;
 	}
-	
+	/**
+	 * Observes when and where is mouse pressed
+	 */
 	public void mousePressed(MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();
@@ -63,11 +73,22 @@ public class MouseInput extends MouseAdapter {
 			}
 		}
 	}
-	
+	/**
+	 * Observes when mouse is released
+	 */
 	public void mouseReleased(MouseEvent e) {
 
 	}
-
+	/**
+	 * Finds if mouse cursor position is within given rectangle
+	 * @param mx
+	 * @param my
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @return
+	 */
 	private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
 		if (mx >= x && mx <= x + width) {
 			if (my >= y && my <= y + height) {
@@ -78,14 +99,23 @@ public class MouseInput extends MouseAdapter {
 			return false;
 
 	}
-
+	/**
+	 * Tick method
+	 */
 	public void tick() {
 		score = hud.getScore();
 		System.out.println(score);
 	}
-
+	/**
+	 * Render method
+	 * @param g
+	 */
 	public void render(Graphics g) {
 	}
+	/**
+	 * Sets game option
+	 * @param opt
+	 */
 	public void setOption(int opt) {
 		option = opt;
 	}

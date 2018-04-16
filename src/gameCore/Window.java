@@ -11,7 +11,11 @@ import javax.swing.JFrame;
 
 import gameCore.GameClass.STATE;
 import gameCore.Menu;
-
+/**
+ * Class for the game window
+ * @author dominikvintr
+ *
+ */
 public class Window extends Canvas {
 	
 	Menu menu;
@@ -25,7 +29,15 @@ public class Window extends Canvas {
 		blank  = bl;
 	}
 	
-	
+/**
+ * Creates instance of a JFrame window
+ * Window is always maximized
+ * @param width
+ * @param height
+ * @param title
+ * @param game
+ * @throws InterruptedException
+ */
 	public Window(int width, int height, String title, GameClass game) throws InterruptedException {
 		JFrame frame = new JFrame(title);
 		
